@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./iac
+        working-directory: /iac
     environment: default
     steps:
       - name: 'Az CLI login'
