@@ -1,6 +1,11 @@
 name: Run Azure Login with OIDC
 on: [push]
 
+defaults:
+  run:
+    shell: bash
+    working-directory: iac
+    
 permissions:
       id-token: write
       contents: read
@@ -23,6 +28,6 @@ jobs:
           az account get-access-token
       - name: 'Run Terraform apply'
         uses: dflook/terraform-apply@v1
-        with:
-          path: iac
+        
+       
           
