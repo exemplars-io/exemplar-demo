@@ -3,7 +3,7 @@ on: [push]
 
 defaults:
   run:
-    working-directory: iac
+    working-directory: ./iac
     
 permissions:
       id-token: write
