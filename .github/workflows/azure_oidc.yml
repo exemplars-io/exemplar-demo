@@ -23,6 +23,9 @@ jobs:
           az group list
           az account get-access-token
           
+      - name: Checkout
+        uses: actions/checkout@v2   
+        
       - name: 'Run Terraform plan'
         uses: dflook/terraform-plan@v1
         with: 
