@@ -1,7 +1,12 @@
 name: Run Azure Login with OIDC
 on: [push]
 
-    
+env:
+  TERRAFORM_PRE_RUN: |
+    # Install latest Azure CLI
+    curl -skL https://aka.ms/InstallAzureCLIDeb | bash
+
+       
 permissions:
       id-token: write
       contents: read
