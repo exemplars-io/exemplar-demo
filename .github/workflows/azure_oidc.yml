@@ -8,9 +8,6 @@ permissions:
 jobs: 
   build-and-deploy:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: iac
     environment: default
     steps:
       - name: 'Az CLI login'
@@ -25,8 +22,11 @@ jobs:
           az account show
           az group list
           az account get-access-token
+          
       - name: 'Run Terraform apply'
         uses: dflook/terraform-apply@v1
+        with:
+          path: terraform
         
        
           
