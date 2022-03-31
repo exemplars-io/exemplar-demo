@@ -25,6 +25,7 @@ jobs:
           
       - name: 'Run Terraform apply'
         uses: dflook/terraform-apply@v1
-        
+        with: 
+          path: .
        
           
