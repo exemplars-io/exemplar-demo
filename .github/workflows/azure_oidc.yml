@@ -23,6 +23,10 @@ jobs:
           az group list
           az account get-access-token
           
+      - name: 'Run Terraform plan'
+        uses: dflook/terraform-plan@v1
+        with: 
+          path: .    
       - name: 'Run Terraform apply'
         uses: dflook/terraform-apply@v1
         with: 
