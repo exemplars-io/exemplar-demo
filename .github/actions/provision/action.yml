@@ -36,7 +36,7 @@ runs:
           if ($MostRecentArtifactURI){
             Invoke-RestMethod -uri $MostRecentArtifactURI -Token $Token -Authentication bearer -outfile ./state.zip
             Expand-Archive ./state.zip
-            openssl enc -d -in ./state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./terraform.tfstate
+            openssl enc -d -in ./iac/state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./iac/terraform.tfstate
           }
         }
         terraform init
@@ -52,13 +52,13 @@ runs:
         }
         $StateExists = Test-Path -Path ./terraform.tfstate -PathType Leaf
         if ($StateExists){
-          openssl enc -in ./terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./terraform.tfstate.enc
+          openssl enc -in ./iac/terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./iac/terraform.tfstate.enc
         }
       shell: pwsh
     - uses: actions/upload-artifact@v2
       with:
         name: terraformstatefile
-        path: ./terraform.tfstate.enc
+        path: ./iac/terraform.tfstate.enc
 branding:
   icon: 'cloud'
   color: 'gray-dark'
