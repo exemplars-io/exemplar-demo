@@ -13,6 +13,7 @@ runs:
     - uses: hashicorp/setup-terraform@v1
     - id: terraform
       run: |
+        cd iac
         $Repo = "${{ github.repository }}"
         $BaseUri = "https://api.github.com"
         $ArtifactUri = "$BaseUri/repos/$Repo/actions/artifacts"
