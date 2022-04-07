@@ -16,10 +16,6 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_resource_group" "exemplar_demo_rg" {
-  name     = "exemplar_demo_rg"
-  location = "East Us"
-}
 
 resource "azurerm_resource_group" "exemplar_demo_rg_1" {
   name     = "exemplar_demo_rg_1"
