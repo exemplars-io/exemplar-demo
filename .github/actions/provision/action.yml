@@ -23,8 +23,8 @@ runs:
     - uses: actions/checkout@v2
     - uses: hashicorp/setup-terraform@v1
     - id: terraform
+      working-directory: ./iac
       run: | 
-        cd iac 
         $Repo = "${{ github.repository }}"
         $BaseUri = "https://api.github.com"
         $ArtifactUri = "$BaseUri/repos/$Repo/actions/artifacts"
@@ -58,6 +58,7 @@ runs:
         }       
       shell: pwsh
     - uses: actions/upload-artifact@v2
+      working-directory: ./iac
       with:
         name: terraformstatefile
         path: terraform.tfstate.enc
