@@ -1,2 +1,2 @@
 echo "starting ps script"
-echo "{{ $github.repository}}"
+echo "{{ $github.repository }}"
