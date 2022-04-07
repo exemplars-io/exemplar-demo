@@ -52,6 +52,7 @@ runs:
         }
         $StateExists = Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
         if ($StateExists){
+          echo "state file found, encrypting with the key"
           openssl enc -in ./iac/terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./iac/terraform.tfstate.enc
         }
       shell: pwsh
