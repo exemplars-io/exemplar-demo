@@ -1,4 +1,4 @@
-y$Repo = ${Env:GITHUB_REPOSITORY}
+$Repo = ${Env:GITHUB_REPOSITORY}
 echo $Repo
 $BaseUri = "https://api.github.com"
 echo $BaseUri
