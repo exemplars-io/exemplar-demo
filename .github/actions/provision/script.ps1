@@ -13,6 +13,6 @@ if ($RestResponse){
   if ($MostRecentArtifactURI){
     Invoke-RestMethod -uri $MostRecentArtifactURI -Token $Token -Authentication bearer -outfile ./state.zip
     Expand-Archive state.zip
-    openssl enc -d -in state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:"${`{ inputs.encryptionkey }`}" -out terraform.tfstate
+    openssl enc -d -in state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:${Env:ENCRYPTIONKEY} -out terraform.tfstate
   }
 }
