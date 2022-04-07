@@ -55,7 +55,7 @@ runs:
         
         Test-Path -Path terraform.tfstate -PathType Leaf
         echo "find the state file with relative path"
-        Test-Path -Path ,/iac/terraform.tfstate -PathType Leaf
+        Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
 
         $StateExists = Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
         if ($StateExists){
