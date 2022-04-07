@@ -1,7 +1,8 @@
 $Repo = "${`{ github.repository }`}"
+echo $Repo
 $BaseUri = "https://api.github.com"
+echo $BaseUri
 $ArtifactUri = "$BaseUri/repos/$Repo/actions/artifacts"
-
 echo $ArtifactUri
 
 $Token = "${`{ github.token }`}" | ConvertTo-SecureString -AsPlainText
