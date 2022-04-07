@@ -51,7 +51,12 @@ runs:
           terraform apply -auto-approve $custom_apply_flags
         }
         ls -la
-        echo "find the state file"
+        echo "find the state file with direct path"
+        
+        Test-Path -Path terraform.tfstate -PathType Leaf
+        echo "find the state file with relative path"
+        Test-Path -Path ,/iac/terraform.tfstate -PathType Leaf
+
         $StateExists = Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
         if ($StateExists){
           echo "state file found, encrypting with the key"
