@@ -1,22 +1,6 @@
 name: 'provision'
 description: 'Sets up and runs Terraform, and save state in local encrypted artifact'
 author: 'Satya Tanwar'
-inputs:
-  encryptionkey:
-    description: 'Used to read artifact and as a key to encrypt and decrypt the state file artifact'
-    required: true
-  apply:
-    description: 'terraform apply'
-    required: fals
-    default: true
-  custom_plan_flags:
-    description: 'Add custom flags to the terraform plan command'
-    required: false
-    default: ''
-  custom_apply_flags:
-    description: 'Add custom flags to the terraform apply command'
-    required: false
-    default: ''
 runs:
   using: "composite"
   steps:
