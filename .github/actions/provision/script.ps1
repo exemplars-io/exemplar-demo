@@ -1,3 +1,6 @@
-echo "starting ps script"
-echo "Working Path: ${Env:GITHUB_WORKSPACE}"
-echo "Working Path: ${Env:GITHUB_REPOSITORY}"
+$Repo = ${Env:GITHUB_REPOSITORY}
+echo $Repo
+$BaseUri = "https://api.github.com"
+echo $BaseUri
+$ArtifactUri = "$BaseUri/repos/$Repo/actions/artifacts"
+echo $ArtifactUri
