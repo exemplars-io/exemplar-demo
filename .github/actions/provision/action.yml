@@ -24,8 +24,7 @@ runs:
     - uses: hashicorp/setup-terraform@v1
     - id: terraform
       working-directory: ./iac
-      run: | 
-        .github/actions/provision/script.ps1 
+      run: '& $env:GITHUB_ACTION_PATH/provision/script.ps1' 
       shell: pwsh
     - uses: actions/upload-artifact@v2
       with:
