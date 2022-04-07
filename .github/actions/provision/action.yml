@@ -58,10 +58,9 @@ runs:
         }       
       shell: pwsh
     - uses: actions/upload-artifact@v2
-      working-directory: ./iac
       with:
         name: terraformstatefile
-        path: terraform.tfstate.enc
+        path: ./iac/terraform.tfstate.enc
 branding:
   icon: 'cloud'
   color: 'gray-dark'
