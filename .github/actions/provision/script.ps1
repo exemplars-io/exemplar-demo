@@ -6,6 +6,7 @@ $ArtifactUri = "$BaseUri/repos/$Repo/actions/artifacts"
 echo $ArtifactUri
 $Token = ${Env:GITHUB_TOKEN} | ConvertTo-SecureString -AsPlainText
 echo $Token
+echo ${Env:encryptionkey}
 $RestResponse = Invoke-RestMethod -Authentication Bearer -Uri $ArtifactUri -Token $Token | Select-Object -ExpandProperty artifacts
 if ($RestResponse){
   $MostRecentArtifactURI = $RestResponse | Sort-Object -Property created_at -Descending | where name -eq "terraformstatefile" | Select-Object -First 1 | Select-Object -ExpandProperty archive_download_url
