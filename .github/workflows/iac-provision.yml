@@ -16,6 +16,7 @@ jobs:
       ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+
     runs-on: ubuntu-latest
     environment: default
 
