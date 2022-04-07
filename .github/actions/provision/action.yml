@@ -35,8 +35,8 @@ runs:
           Write-Host "Most recent artifact URI = $MostRecentArtifactURI"
           if ($MostRecentArtifactURI){
             Invoke-RestMethod -uri $MostRecentArtifactURI -Token $Token -Authentication bearer -outfile ./state.zip
-            Expand-Archive ./state.zip
-            openssl enc -d -in ./iac/state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./iac/terraform.tfstate
+            Expand-Archive state.zip
+            openssl enc -d -in state/terraform.tfstate.enc -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out terraform.tfstate
           }
         }
         terraform init
@@ -50,23 +50,17 @@ runs:
         if ($terraformapply){
           terraform apply -auto-approve $custom_apply_flags
         }
-        ls -la
-        echo "find the state file with direct path"
-        
-        Test-Path -Path terraform.tfstate -PathType Leaf
-        echo "find the state file with relative path"
-        Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
-
-        $StateExists = Test-Path -Path ./iac/terraform.tfstate -PathType Leaf
+       
+        $StateExists = Test-Path -Path terraform.tfstate -PathType Leaf
         if ($StateExists){
           echo "state file found, encrypting with the key"
-          openssl enc -in ./iac/terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out ./iac/terraform.tfstate.enc
+          openssl enc -in terraform.tfstate -aes-256-cbc -pbkdf2 -pass pass:"${{ inputs.encryptionkey }}" -out terraform.tfstate.enc
         }       
       shell: pwsh
     - uses: actions/upload-artifact@v2
       with:
         name: terraformstatefile
-        path: ./iac/terraform.tfstate.enc
+        path: terraform.tfstate.enc
 branding:
   icon: 'cloud'
   color: 'gray-dark'
